@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.view.film
+package com.example.finalproject.ui.view.penayangan
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,36 +31,36 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.finalproject.model.Film
+import com.example.finalproject.model.Penayangan
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
 import com.example.finalproject.ui.navigation.DestinasiNavigasi
-import com.example.finalproject.ui.viewmodel.film.DetailUiState
-import com.example.finalproject.ui.viewmodel.film.DetailViewModelFilm
+import com.example.finalproject.ui.viewmodel.penayangan.DetailUiState
+import com.example.finalproject.ui.viewmodel.penayangan.DetailViewModelPenayangan
 
-object DestinasiDetail: DestinasiNavigasi {
+object DestinasiDetailPenayangan: DestinasiNavigasi {
     override val route = "detail"
     override val titleRes = "Detail Mahasiswa"
-    const val FILM = "idFilm"
-    val routesWithArg = "$route/{$FILM}"
+    const val Penayangan = "idPenayangan"
+    val routesWithArg = "$route/{${Penayangan}}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailViewFilm(
+fun DetailViewPenayangan(
     navigateBack: () -> Unit,
     navigateToItemUpdate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailViewModelFilm = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: DetailViewModelPenayangan = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     Scaffold(
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailPenayangan.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {
-                    viewModel.getFilmById()
+                    viewModel.getPenayanganById()
                 }
             )
         },
@@ -79,11 +79,11 @@ fun DetailViewFilm(
     ) { innerPadding ->
         DetailStatus(
             modifier = Modifier.padding(innerPadding),
-            detailUiState = viewModel.filmDetailState,
-            retryAction = { viewModel.getFilmById() },
+            detailUiState = viewModel.penayanganDetailState,
+            retryAction = { viewModel.getPenayanganById() },
             onDeleteClick = {
-                viewModel.deleteFilm(viewModel.filmDetailState.let { state ->
-                    if (state is DetailUiState.Success) state.film.idFilm else ""
+                viewModel.deletePenayangan(viewModel.penayanganDetailState.let { state ->
+                    if (state is DetailUiState.Success) state.penayangan.idPenayangan else ""
                 })
                 navigateBack()
             }
@@ -102,13 +102,13 @@ fun DetailStatus(
     when (detailUiState) {
         is DetailUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is DetailUiState.Success -> {
-            if (detailUiState.film.idFilm.isEmpty()) {
+            if (detailUiState.penayangan.idPenayangan.isEmpty()) {
                 Box(
                     modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center
                 ) { Text("Data tidak ditemukan") }
             } else {
                 ItemDetailMhs(
-                    film = detailUiState.film,
+                    penayangan = detailUiState.penayangan,
                     modifier = modifier.fillMaxWidth(),
                     onDeleteClick = onDeleteClick
                 )
@@ -122,7 +122,7 @@ fun DetailStatus(
 @Composable
 fun ItemDetailMhs(
     modifier: Modifier = Modifier,
-    film: Film,
+    penayangan: Penayangan,
     onDeleteClick: () -> Unit
 ) {
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
@@ -134,17 +134,15 @@ fun ItemDetailMhs(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            ComponentDetailFilm(judul = "ID Film", isinya = film.idFilm)
+            ComponentDetailPenayangan(judul = "ID Penayangan", isinya = penayangan.idPenayangan)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            ComponentDetailFilm(judul = "Judul Film", isinya = film.judulFilm)
+            ComponentDetailPenayangan(judul = "ID Film", isinya = penayangan.idFilm)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            ComponentDetailFilm(judul = "Durasi", isinya = film.durasi)
+            ComponentDetailPenayangan(judul = "ID Studio", isinya = penayangan.idStudio)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            ComponentDetailFilm(judul = "Deskripsi", isinya = film.deskripsi)
+            ComponentDetailPenayangan(judul = "Tanggal Penayangan", isinya = penayangan.tanggalPenayangan)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            ComponentDetailFilm(judul = "Genre", isinya = film.genre)
-            Divider(modifier = Modifier.padding(vertical = 8.dp))
-            ComponentDetailFilm(judul = "Rating Usia", isinya = film.ratingUsia)
+            ComponentDetailPenayangan(judul = "Harga Tiket", isinya = penayangan.hargaTiket)
 
             Spacer(modifier = Modifier.padding(8.dp))
 
@@ -173,7 +171,7 @@ fun ItemDetailMhs(
 
 
 @Composable
-fun ComponentDetailFilm(
+fun ComponentDetailPenayangan(
     modifier: Modifier = Modifier,
     judul: String,
     isinya: String

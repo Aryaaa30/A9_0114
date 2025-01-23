@@ -50,7 +50,7 @@ import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.HomeUiState
 import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
 
-object DestinasiHome : DestinasiNavigasi {
+object DestinasiHomeFilm : DestinasiNavigasi {
     override val route = "home"
     override val titleRes = "Mahasiswa"
 }
@@ -68,7 +68,7 @@ fun HomeViewFilm(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiHome.titleRes,
+                title = DestinasiHomeFilm.titleRes,
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {

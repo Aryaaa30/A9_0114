@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.model.Penayangan
 import com.example.finalproject.repository.PenayanganRepository
-import com.example.finalproject.ui.navigation.DestinasiDetailPenayangan
+import com.example.finalproject.ui.view.penayangan.DestinasiDetailPenayangan
 import com.example.finalproject.ui.viewmodel.film.HomeUiState
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
