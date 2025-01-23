@@ -1,6 +1,5 @@
 package com.example.finalproject.service
 
-import com.example.finalproject.model.Film
 import com.example.finalproject.model.Penayangan
 import retrofit2.http.Body
 import retrofit2.http.DELETE
