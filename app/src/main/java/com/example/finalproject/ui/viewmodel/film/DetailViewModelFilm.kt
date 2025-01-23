@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.model.Film
 import com.example.finalproject.repository.FilmRepository
-import com.example.finalproject.ui.navigation.DestinasiDetail
+import com.example.finalproject.ui.view.film.DestinasiDetail
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -37,8 +37,8 @@ class DetailViewModelFilm(
         viewModelScope.launch {
             filmDetailState = DetailUiState.Loading
             filmDetailState = try {
-                val mahasiswa = film.getFilmById(_idFilm)
-                DetailUiState.Success(mahasiswa)
+                val film = film.getFilmById(_idFilm)
+                DetailUiState.Success(film)
             } catch (e: IOException) {
                 DetailUiState.Error
             } catch (e: HttpException) {

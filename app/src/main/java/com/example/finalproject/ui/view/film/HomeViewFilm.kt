@@ -46,9 +46,14 @@ import com.example.finalproject.R
 import com.example.finalproject.model.Film
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
-import com.example.finalproject.ui.navigation.DestinasiHome
+import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.HomeUiState
 import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
+
+object DestinasiHome : DestinasiNavigasi {
+    override val route = "home"
+    override val titleRes = "Mahasiswa"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

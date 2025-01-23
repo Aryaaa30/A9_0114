@@ -11,12 +11,20 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
-import com.example.finalproject.ui.navigation.DestinasiUpdate
+import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.UpdateViewModelFilm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
+
+object DestinasiUpdate: DestinasiNavigasi {
+    override val route = "update"
+    override val titleRes = "Edit Mahasiswa"
+    const val FILM = "idFilm"
+    val routesWithArg = "$route/{$FILM}"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

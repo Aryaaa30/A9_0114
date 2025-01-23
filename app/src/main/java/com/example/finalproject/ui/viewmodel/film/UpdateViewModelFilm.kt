@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.FilmRepository
-import com.example.finalproject.ui.navigation.DestinasiUpdate
+import com.example.finalproject.ui.view.film.DestinasiUpdate
 import kotlinx.coroutines.launch
 
 class UpdateViewModelFilm (

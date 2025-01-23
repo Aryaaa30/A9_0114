@@ -24,11 +24,17 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
-import com.example.finalproject.ui.navigation.DestinasiEntry
+import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.InsertUiEvent
 import com.example.finalproject.ui.viewmodel.film.InsertUiState
 import com.example.finalproject.ui.viewmodel.film.InsertViewModelFilm
 import kotlinx.coroutines.launch
+
+
+object DestinasiEntry: DestinasiNavigasi {
+    override val route ="item_entry"
+    override val titleRes = "Insert Mahasiswa"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

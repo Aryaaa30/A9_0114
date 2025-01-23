@@ -34,9 +34,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.model.Film
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
-import com.example.finalproject.ui.navigation.DestinasiDetail
+import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.DetailUiState
 import com.example.finalproject.ui.viewmodel.film.DetailViewModelFilm
+
+object DestinasiDetail: DestinasiNavigasi {
+    override val route = "detail"
+    override val titleRes = "Detail Mahasiswa"
+    const val FILM = "idFilm"
+    val routesWithArg = "$route/{$FILM}"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
