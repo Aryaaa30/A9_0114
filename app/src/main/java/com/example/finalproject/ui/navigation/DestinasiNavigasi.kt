@@ -15,3 +15,10 @@ object DestinasiDetailPenayangan: DestinasiNavigasi {
     const val Penayangan = "idPenayangan"
     val routesWithArg = "$route/{${Penayangan}}"
 }
+
+object DestinasiUpdatePenayangan: DestinasiNavigasi {
+    override val route = "update"
+    override val titleRes = "Edit Mahasiswa"
+    const val Penayangan = "idPenayangan"
+    val routesWithArg = "$route/{$Penayangan}"
+}
