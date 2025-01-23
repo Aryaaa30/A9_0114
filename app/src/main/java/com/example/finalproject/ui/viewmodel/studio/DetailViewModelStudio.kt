@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.viewmodel.penayangan
+package com.example.finalproject.ui.viewmodel.studio
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,39 +6,39 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.model.Penayangan
-import com.example.finalproject.repository.PenayanganRepository
-import com.example.finalproject.ui.view.penayangan.DestinasiDetailPenayangan
+import com.example.finalproject.model.Studio
+import com.example.finalproject.repository.StudioRepository
+import com.example.finalproject.ui.navigation.DestinasiDetailStudio
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 sealed class DetailUiState {
-    data class Success(val penayangan: Penayangan) : DetailUiState()
+    data class Success(val studio: Studio) : DetailUiState()
     object Error : DetailUiState()
     object Loading : DetailUiState()
 }
 
-class DetailViewModelPenayangan(
+class DetailViewModelStudio(
     savedStateHandle: SavedStateHandle,
-    private val penayangan: PenayanganRepository
+    private val studio: StudioRepository
 ) : ViewModel() {
 
-    var penayanganDetailState: DetailUiState by mutableStateOf(DetailUiState.Loading)
+    var studioDetailState: DetailUiState by mutableStateOf(DetailUiState.Loading)
         private set
 
-    private val _idPenayangan: String = checkNotNull(savedStateHandle[DestinasiDetailPenayangan.Penayangan])
+    private val _idStudio: String = checkNotNull(savedStateHandle[DestinasiDetailStudio.Studio])
 
     init {
-        getPenayanganById()
+        getStudioById()
     }
 
-    fun getPenayanganById() {
+    fun getStudioById() {
         viewModelScope.launch {
-            penayanganDetailState = DetailUiState.Loading
-            penayanganDetailState = try {
-                val penayangan = penayangan.getPenayanganById(_idPenayangan)
-                DetailUiState.Success(penayangan)
+            studioDetailState = DetailUiState.Loading
+            studioDetailState = try {
+                val mahasiswa = studio.getStudioById(_idStudio)
+                DetailUiState.Success(mahasiswa)
             } catch (e: IOException) {
                 DetailUiState.Error
             } catch (e: HttpException) {
@@ -47,10 +47,10 @@ class DetailViewModelPenayangan(
         }
     }
 
-    fun deletePenayangan(idPenayangan:String) {
+    fun deleteStudio(idStudio:String) {
         viewModelScope.launch {
             try {
-                penayangan.deletePenayangan(idPenayangan)
+                studio.deleteStudio(idStudio)
             }catch (e: IOException){
                 HomeUiState.Error
             }catch (e: HttpException){

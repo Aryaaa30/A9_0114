@@ -5,15 +5,13 @@ interface DestinasiNavigasi {
     val titleRes: String
 }
 
-
-
-
-
-
-
-object DestinasiUpdatePenayangan: DestinasiNavigasi {
-    override val route = "update"
-    override val titleRes = "Edit Mahasiswa"
-    const val Penayangan = "idPenayangan"
-    val routesWithArg = "$route/{$Penayangan}"
+object DestinasiDetailStudio: DestinasiNavigasi {
+    override val route = "detail"
+    override val titleRes = "Detail Mahasiswa"
+    const val Studio = "idStudio"
+    val routesWithArg = "$route/{$Studio}"
 }
+
+
+
+

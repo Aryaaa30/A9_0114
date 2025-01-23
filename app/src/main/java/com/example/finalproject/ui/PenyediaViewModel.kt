@@ -10,6 +10,10 @@ import com.example.finalproject.ui.viewmodel.film.DetailViewModelFilm
 import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
 import com.example.finalproject.ui.viewmodel.film.InsertViewModelFilm
 import com.example.finalproject.ui.viewmodel.film.UpdateViewModelFilm
+import com.example.finalproject.ui.viewmodel.penayangan.DetailViewModelPenayangan
+import com.example.finalproject.ui.viewmodel.penayangan.HomeViewModelPenayangan
+import com.example.finalproject.ui.viewmodel.penayangan.InsertViewModelPenayangan
+import com.example.finalproject.ui.viewmodel.penayangan.UpdateViewModelPenayangan
 
 object PenyediaViewModel{
     val Factory = viewModelFactory {
@@ -17,6 +21,10 @@ object PenyediaViewModel{
         initializer { InsertViewModelFilm(aplikasiFilm().container.filmRepository) }
         initializer { DetailViewModelFilm(createSavedStateHandle(),aplikasiFilm().container.filmRepository) }
         initializer { UpdateViewModelFilm(createSavedStateHandle(),aplikasiFilm().container.filmRepository) }
+        initializer { HomeViewModelPenayangan(aplikasiFilm().container.penayanganRepository) }
+        initializer { InsertViewModelPenayangan(aplikasiFilm().container.penayanganRepository) }
+        initializer { DetailViewModelPenayangan(createSavedStateHandle(),aplikasiFilm().container.penayanganRepository) }
+        initializer { UpdateViewModelPenayangan(createSavedStateHandle(),aplikasiFilm().container.penayanganRepository) }
     }
     fun CreationExtras.aplikasiFilm(): CinemasApplications =
         (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]as CinemasApplications)
