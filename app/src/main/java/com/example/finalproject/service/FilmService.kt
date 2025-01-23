@@ -28,7 +28,7 @@ interface FilmService {
     suspend fun updateFilm(@Query("idFilm")idFilm: String, @Body film: Film)
 
     @DELETE("deletefilm.php/{idFilm}")
-    suspend fun deletefilm(@Query("idFilm")idFilm: String):retrofit2.Response<Void>
+    suspend fun deleteFilm(@Query("idFilm")idFilm: String):retrofit2.Response<Void>
 
 
 }

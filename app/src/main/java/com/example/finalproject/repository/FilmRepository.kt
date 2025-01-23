@@ -27,7 +27,7 @@ class NetworkFilmRepository(
 
     override suspend fun deleteFilm(idFilm: String) {
         try {
-            val response = filmApiService.deletefilm(idFilm)
+            val response = filmApiService.deleteFilm(idFilm)
             if (!response.isSuccessful) {
                 throw IOException("Failed to delete Film. HTTP Status code: " +
                         "${response.code()}")
