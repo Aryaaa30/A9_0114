@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.model.Film
 import com.example.finalproject.repository.FilmRepository
-import com.example.finalproject.ui.view.film.DestinasiDetail
+import com.example.finalproject.ui.view.film.DestinasiDetailFilm
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -27,7 +27,7 @@ class DetailViewModelFilm(
     var filmDetailState: DetailUiState by mutableStateOf(DetailUiState.Loading)
         private set
 
-    private val _idFilm: String = checkNotNull(savedStateHandle[DestinasiDetail.FILM])
+    private val _idFilm: String = checkNotNull(savedStateHandle[DestinasiDetailFilm.FILM])
 
     init {
         getFilmById()

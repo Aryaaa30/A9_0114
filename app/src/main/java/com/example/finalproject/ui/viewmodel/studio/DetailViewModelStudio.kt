@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.model.Studio
 import com.example.finalproject.repository.StudioRepository
-import com.example.finalproject.ui.navigation.DestinasiDetailStudio
+import com.example.finalproject.ui.view.studio.DestinasiDetailStudio
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

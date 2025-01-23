@@ -18,6 +18,10 @@ import com.example.finalproject.ui.viewmodel.studio.DetailViewModelStudio
 import com.example.finalproject.ui.viewmodel.studio.HomeViewModelStudio
 import com.example.finalproject.ui.viewmodel.studio.InsertViewModelStudio
 import com.example.finalproject.ui.viewmodel.studio.UpdateViewModelStudio
+import com.example.finalproject.ui.viewmodel.tiket.DetailViewModelTiket
+import com.example.finalproject.ui.viewmodel.tiket.HomeViewModelTiket
+import com.example.finalproject.ui.viewmodel.tiket.InsertViewModelTiket
+import com.example.finalproject.ui.viewmodel.tiket.UpdateViewModelTiket
 
 object PenyediaViewModel{
     val Factory = viewModelFactory {
@@ -33,6 +37,10 @@ object PenyediaViewModel{
         initializer { InsertViewModelStudio(aplikasiFilm().container.studioRepository) }
         initializer { DetailViewModelStudio(createSavedStateHandle(),aplikasiFilm().container.studioRepository) }
         initializer { UpdateViewModelStudio(createSavedStateHandle(),aplikasiFilm().container.studioRepository) }
+        initializer { HomeViewModelTiket(aplikasiFilm().container.tiketRepository) }
+        initializer { InsertViewModelTiket(aplikasiFilm().container.tiketRepository) }
+        initializer { DetailViewModelTiket(createSavedStateHandle(),aplikasiFilm().container.tiketRepository) }
+        initializer { UpdateViewModelTiket(createSavedStateHandle(),aplikasiFilm().container.tiketRepository) }
     }
     fun CreationExtras.aplikasiFilm(): CinemasApplications =
         (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]as CinemasApplications)

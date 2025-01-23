@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.model.Tiket
 import com.example.finalproject.repository.TiketRepository
-import com.example.finalproject.ui.navigation.DestinasiDetailTiket
+import com.example.finalproject.ui.view.tiket.DestinasiDetailTiket
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

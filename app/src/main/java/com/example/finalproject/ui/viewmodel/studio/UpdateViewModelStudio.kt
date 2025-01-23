@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.StudioRepository
-import com.example.finalproject.ui.navigation.DestinasiUpdateStudio
+import com.example.finalproject.ui.view.studio.DestinasiUpdateStudio
 import kotlinx.coroutines.launch
 
 class UpdateViewModelStudio (

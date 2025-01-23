@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.TiketRepository
-import com.example.finalproject.ui.navigation.DestinasiUpdateTiket
+import com.example.finalproject.ui.view.tiket.DestinasiUpdateTiket
 import kotlinx.coroutines.launch
 
 class UpdateViewModelTiket (

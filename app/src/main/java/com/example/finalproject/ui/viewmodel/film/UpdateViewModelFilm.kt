@@ -7,8 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.FilmRepository
-import com.example.finalproject.ui.view.film.DestinasiUpdate
-import com.example.finalproject.ui.viewmodel.studio.toUiStateMhs
+import com.example.finalproject.ui.view.film.DestinasiUpdateFilm
 import kotlinx.coroutines.launch
 
 class UpdateViewModelFilm (
@@ -18,7 +17,7 @@ class UpdateViewModelFilm (
     var UpdateUiState by mutableStateOf(InsertUiState())
         private set
 
-    private val _idFilm: String = checkNotNull(savedStateHandle[DestinasiUpdate.FILM])
+    private val _idFilm: String = checkNotNull(savedStateHandle[DestinasiUpdateFilm.FILM])
 
     init {
         viewModelScope.launch {
