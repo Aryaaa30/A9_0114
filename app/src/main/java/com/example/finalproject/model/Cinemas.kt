@@ -36,6 +36,16 @@ data class Penayangan(
 
     @SerialName("harga_tiket")
     val hargaTiket : String,
+)
 
+@Serializable
+data class Studio(
+    @SerialName("id_studio")
+    val idStudio : String,
+
+    @SerialName("nama_studio")
+    val namaStudio : String,
+
+    val kapasitas : String
 )
 
