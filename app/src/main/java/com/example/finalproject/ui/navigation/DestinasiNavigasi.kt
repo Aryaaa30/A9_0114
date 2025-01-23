@@ -23,3 +23,8 @@ object DestinasiHome : DestinasiNavigasi{
     override val route = "home"
     override val titleRes = "Mahasiswa"
 }
+
+object DestinasiEntry:DestinasiNavigasi{
+    override val route ="item_entry"
+    override val titleRes = "Insert Mahasiswa"
+}
