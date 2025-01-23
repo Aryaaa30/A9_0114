@@ -11,5 +11,4 @@ class CinemasApplications: Application() {
         super.onCreate()
         container = CinemasContainer()
     }
-
 }
