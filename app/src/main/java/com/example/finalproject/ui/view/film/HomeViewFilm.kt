@@ -52,7 +52,7 @@ import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
 
 object DestinasiHomeFilm : DestinasiNavigasi {
     override val route = "home"
-    override val titleRes = "Mahasiswa"
+    override val titleRes = "Film"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

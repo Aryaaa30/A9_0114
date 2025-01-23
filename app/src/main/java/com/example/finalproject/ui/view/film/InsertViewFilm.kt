@@ -31,9 +31,9 @@ import com.example.finalproject.ui.viewmodel.film.InsertViewModelFilm
 import kotlinx.coroutines.launch
 
 
-object DestinasiEntry: DestinasiNavigasi {
+object DestinasiInsertFilm: DestinasiNavigasi {
     override val route ="item_entry"
-    override val titleRes = "Insert Mahasiswa"
+    override val titleRes = "Insert Film"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +49,7 @@ fun InsertViewFilm(
         modifier=modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiEntry.titleRes,
+                title = DestinasiInsertFilm.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

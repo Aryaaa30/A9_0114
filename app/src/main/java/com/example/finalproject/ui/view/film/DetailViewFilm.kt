@@ -38,9 +38,9 @@ import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.viewmodel.film.DetailUiState
 import com.example.finalproject.ui.viewmodel.film.DetailViewModelFilm
 
-object DestinasiDetail: DestinasiNavigasi {
+object DestinasiDetailFilm: DestinasiNavigasi {
     override val route = "detail"
-    override val titleRes = "Detail Mahasiswa"
+    override val titleRes = "Detail Film"
     const val FILM = "idFilm"
     val routesWithArg = "$route/{$FILM}"
 }
@@ -56,7 +56,7 @@ fun DetailViewFilm(
     Scaffold(
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailFilm.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {

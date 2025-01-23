@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.view.film
+package com.example.finalproject.ui.view.tiket
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -12,27 +12,26 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
 import com.example.finalproject.ui.navigation.DestinasiNavigasi
-import com.example.finalproject.ui.viewmodel.film.UpdateViewModelFilm
+import com.example.finalproject.ui.viewmodel.tiket.UpdateViewModelTiket
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
-object DestinasiUpdateFilm: DestinasiNavigasi {
+object DestinasiUpdateTiket: DestinasiNavigasi {
     override val route = "update"
-    override val titleRes = "Edit Film"
-    const val FILM = "idFilm"
-    val routesWithArg = "$route/{$FILM}"
+    override val titleRes = "Edit Tiket"
+    const val Tiket = "idTiket"
+    val routesWithArg = "$route/{$Tiket}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UpdateViewFilm(
+fun UpdateViewTiket(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     onNavigate:()-> Unit,
-    viewModel: UpdateViewModelFilm = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: UpdateViewModelTiket = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -41,7 +40,7 @@ fun UpdateViewFilm(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiUpdateFilm.titleRes,
+                title = DestinasiUpdateTiket.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = onBack,
@@ -51,10 +50,10 @@ fun UpdateViewFilm(
         EntryBody(
             modifier = Modifier.padding(padding),
             insertUiState = viewModel.UpdateUiState,
-            onSiswaValueChange = viewModel::updateInsertFilmState,
+            onSiswaValueChange = viewModel::updateInsertTiketState,
             onSaveClick = {
                 coroutineScope.launch {
-                    viewModel.updateFilm()
+                    viewModel.updateTiket()
                     delay(600)
                     withContext(Dispatchers.Main){
                         onNavigate()
