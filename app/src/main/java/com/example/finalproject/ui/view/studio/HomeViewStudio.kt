@@ -235,12 +235,12 @@ fun StudioCard(
                     color = Color(0xFF00796B) // Warna teks hijau tua
                 )
                 Text(
-                    text = "NIM: ${studio.namaStudio}",
+                    text = "Nama Studio: ${studio.namaStudio}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )
                 Text(
-                    text = "Kelas: ${studio.kapasitas}",
+                    text = "Kapasitas: ${studio.kapasitas}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )

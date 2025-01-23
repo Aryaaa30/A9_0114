@@ -234,22 +234,22 @@ fun PenayanganCard(
                     color = Color(0xFF00796B) // Warna teks hijau tua
                 )
                 Text(
-                    text = "NIM: ${penayangan.idFilm}",
+                    text = "ID Film: ${penayangan.idFilm}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )
                 Text(
-                    text = "Kelas: ${penayangan.idStudio}",
+                    text = "ID Studio: ${penayangan.idStudio}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )
                 Text(
-                    text = "Alamat: ${penayangan.tanggalPenayangan}",
+                    text = "Tanggal Penayangan: ${penayangan.tanggalPenayangan}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )
                 Text(
-                    text = "Alamat: ${penayangan.hargaTiket}",
+                    text = "Harga Tiket: ${penayangan.hargaTiket}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFF004D40)
                 )
