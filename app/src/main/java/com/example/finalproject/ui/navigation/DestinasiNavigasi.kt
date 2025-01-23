@@ -11,3 +11,10 @@ object DestinasiDetail: DestinasiNavigasi {
     const val FILM = "idFilm"
     val routesWithArg = "$route/{$FILM}"
 }
+
+object DestinasiUpdate: DestinasiNavigasi {
+    override val route = "update"
+    override val titleRes = "Edit Mahasiswa"
+    const val FILM = "idFilm"
+    val routesWithArg = "$route/{$FILM}"
+}
