@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.PenayanganRepository
-import com.example.finalproject.ui.navigation.DestinasiUpdatePenayangan
+import com.example.finalproject.ui.view.penayangan.DestinasiUpdatePenayangan
 import kotlinx.coroutines.launch
 
 class UpdateViewModelPenayangan (
