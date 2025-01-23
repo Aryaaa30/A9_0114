@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.viewmodel.film
+package com.example.finalproject.ui.viewmodel.studio
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,36 +6,34 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalproject.repository.FilmRepository
-import com.example.finalproject.ui.view.film.DestinasiUpdate
-import com.example.finalproject.ui.viewmodel.studio.toUiStateMhs
+import com.example.finalproject.repository.StudioRepository
+import com.example.finalproject.ui.navigation.DestinasiUpdateStudio
 import kotlinx.coroutines.launch
 
-class UpdateViewModelFilm (
+class UpdateViewModelStudio (
     savedStateHandle: SavedStateHandle,
-    private val film: FilmRepository
+    private val studio: StudioRepository
 ): ViewModel(){
     var UpdateUiState by mutableStateOf(InsertUiState())
         private set
 
-    private val _idFilm: String = checkNotNull(savedStateHandle[DestinasiUpdate.FILM])
+    private val _idStudio: String = checkNotNull(savedStateHandle[DestinasiUpdateStudio.Studio])
 
     init {
         viewModelScope.launch {
-            UpdateUiState = film.getFilmById(_idFilm)
+            UpdateUiState = studio.getStudioById(_idStudio)
                 .toUiStateMhs()
         }
     }
 
-
-    fun updateInsertFilmState(insertUiEvent: InsertUiEvent){
+    fun updateInsertMhsState(insertUiEvent: InsertUiEvent){
         UpdateUiState = InsertUiState(insertUiEvent = insertUiEvent)
     }
 
-    suspend fun updateFilm(){
+    suspend fun updateStudio(){
         viewModelScope.launch {
             try {
-                film.updateFilm(_idFilm, UpdateUiState.insertUiEvent.toMhs())
+                studio.updateStudio(_idStudio, UpdateUiState.insertUiEvent.toMhs())
             }catch (e: Exception){
                 e.printStackTrace()
             }

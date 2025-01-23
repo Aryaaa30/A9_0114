@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.repository.PenayanganRepository
 import com.example.finalproject.ui.view.penayangan.DestinasiUpdatePenayangan
+import com.example.finalproject.ui.viewmodel.studio.toUiStateMhs
 import kotlinx.coroutines.launch
 
 class UpdateViewModelPenayangan (
@@ -21,12 +22,8 @@ class UpdateViewModelPenayangan (
 
     init {
         viewModelScope.launch {
-            try {
-                val penayanganData = penayangan.getPenayanganById(_idPenayangan)
-                UpdateUiState = penayanganData.toUiStateMhs()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            UpdateUiState = penayangan.getPenayanganById(_idPenayangan)
+                .toUiStateMhs()
         }
     }
 

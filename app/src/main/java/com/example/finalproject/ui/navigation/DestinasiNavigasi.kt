@@ -11,6 +11,12 @@ object DestinasiDetailStudio: DestinasiNavigasi {
     const val Studio = "idStudio"
     val routesWithArg = "$route/{$Studio}"
 }
+object DestinasiUpdateStudio: DestinasiNavigasi {
+    override val route = "update"
+    override val titleRes = "Edit Studio"
+    const val Studio = "idStudio"
+    val routesWithArg = "$route/{$Studio}"
+}
 
 
 
