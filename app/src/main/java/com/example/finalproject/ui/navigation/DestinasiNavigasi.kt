@@ -18,3 +18,8 @@ object DestinasiUpdate: DestinasiNavigasi {
     const val FILM = "idFilm"
     val routesWithArg = "$route/{$FILM}"
 }
+
+object DestinasiHome : DestinasiNavigasi{
+    override val route = "home"
+    override val titleRes = "Mahasiswa"
+}
