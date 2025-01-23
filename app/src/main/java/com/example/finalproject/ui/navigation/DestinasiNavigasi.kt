@@ -18,6 +18,13 @@ object DestinasiUpdateStudio: DestinasiNavigasi {
     val routesWithArg = "$route/{$Studio}"
 }
 
+object DestinasiDetailTiket: DestinasiNavigasi {
+    override val route = "detail"
+    override val titleRes = "Detail Tiket"
+    const val Tiket = "idTiket"
+    val routesWithArg = "$route/{$Tiket}"
+}
+
 
 
 
