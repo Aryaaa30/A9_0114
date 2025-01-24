@@ -29,7 +29,7 @@ class HomeViewModelFilm (private val film: FilmRepository): ViewModel() {
         viewModelScope.launch {
             filmUIState=HomeUiState.Loading
             filmUIState=try {
-                HomeUiState.Success(film.getFilm())
+                HomeUiState.Success(film.getFilm().data)
             }catch (e: IOException){
                 HomeUiState.Error
             }catch (e: HttpException){

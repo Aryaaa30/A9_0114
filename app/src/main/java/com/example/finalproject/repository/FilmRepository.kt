@@ -1,11 +1,12 @@
 package com.example.finalproject.repository
 
+import com.example.finalproject.model.AllFilmResponse
 import com.example.finalproject.model.Film
 import com.example.finalproject.service.FilmService
 import java.io.IOException
 
 interface FilmRepository {
-    suspend fun getFilm(): List<Film>
+    suspend fun getFilm(): AllFilmResponse
     suspend fun insertFilm(film: Film)
     suspend fun updateFilm(idFilm: String, film: Film)
     suspend fun deleteFilm(idFilm: String)
@@ -40,11 +41,11 @@ class NetworkFilmRepository(
         }
     }
 
-    override suspend fun getFilm(): List<Film> =
+    override suspend fun getFilm(): AllFilmResponse =
         filmApiService.getAllFilm()
 
     override suspend fun getFilmById(idFilm: String): Film {
-        return filmApiService.getFilmById(idFilm)
+        return filmApiService.getFilmById(idFilm).data
     }
 
 }
