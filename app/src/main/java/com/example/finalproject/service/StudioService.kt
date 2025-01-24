@@ -1,12 +1,18 @@
 package com.example.finalproject.service
 
+import com.example.finalproject.model.AllFilmResponse
+import com.example.finalproject.model.AllStudioResponse
+import com.example.finalproject.model.Film
+import com.example.finalproject.model.FilmDetailResponse
 import com.example.finalproject.model.Studio
+import com.example.finalproject.model.StudioDetailResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface StudioService {
@@ -15,18 +21,18 @@ interface StudioService {
         "Content-Type: application/json",
     )
 
-    @GET("bacastudio.php")
-    suspend fun getAllStudio(): List<Studio>
+    @GET("studio")
+    suspend fun getAllStudio(): AllStudioResponse
 
-    @GET("baca1studio.php")
-    suspend fun getStudioById(@Query("idStudio")idStudio: String): Studio
+    @GET("studio/{id}")
+    suspend fun getStudioById(@Path("idStudio")idStudio: String): StudioDetailResponse
 
-    @POST("insertstudio.php")
+    @POST("studio")
     suspend fun insertStudio(@Body studio: Studio)
 
-    @PUT("editstudio.php/{idStudio}")
-    suspend fun updateStudio(@Query("idStudio")idStudio: String, @Body studio: Studio)
+    @PUT("studio/{id}")
+    suspend fun updateStudio(@Path("idStudio")idStudio: String, @Body studio: Studio)
 
-    @DELETE("deletestudio.php/{idStudio}")
-    suspend fun deleteStudio(@Query("idStudio")idStudio: String):retrofit2.Response<Void>
+    @DELETE("studio/{id}")
+    suspend fun deleteStudio(@Path("idStudio")idStudio: String):retrofit2.Response<Void>
 }

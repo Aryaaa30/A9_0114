@@ -1,11 +1,12 @@
 package com.example.finalproject.repository
 
+import com.example.finalproject.model.AllTiketResponse
 import com.example.finalproject.model.Tiket
 import com.example.finalproject.service.TiketService
 import java.io.IOException
 
 interface TiketRepository {
-    suspend fun getTiket(): List<Tiket>
+    suspend fun getTiket(): AllTiketResponse
     suspend fun insertTiket(tiket: Tiket)
     suspend fun updateTiket(idTiket: String, tiket: Tiket)
     suspend fun deleteTiket(idTiket: String)
@@ -40,7 +41,7 @@ class NetworkTiketRepository(
         }
     }
 
-    override suspend fun getTiket(): List<Tiket> =
+    override suspend fun getTiket(): AllTiketResponse =
         tiketApiService.getAllTiket()
 
     override suspend fun getTiketById(idTiket: String): Tiket {

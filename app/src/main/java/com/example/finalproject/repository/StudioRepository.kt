@@ -1,11 +1,12 @@
 package com.example.finalproject.repository
 
+import com.example.finalproject.model.AllStudioResponse
 import com.example.finalproject.model.Studio
 import com.example.finalproject.service.StudioService
 import java.io.IOException
 
 interface StudioRepository {
-    suspend fun getStudio(): List<Studio>
+    suspend fun getStudio(): AllStudioResponse
     suspend fun insertStudio(studio: Studio)
     suspend fun updateStudio(idStudio: String, studio: Studio)
     suspend fun deleteStudio(idStudio: String)
@@ -40,10 +41,10 @@ class NetworkStudioRepository(
         }
     }
 
-    override suspend fun getStudio(): List<Studio> =
+    override suspend fun getStudio(): AllStudioResponse =
         studioApiService.getAllStudio()
 
     override suspend fun getStudioById(idStudio: String): Studio {
-        return studioApiService.getStudioById(idStudio)
+        return studioApiService.getStudioById(idStudio).data
     }
 }

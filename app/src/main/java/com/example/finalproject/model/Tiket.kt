@@ -21,3 +21,16 @@ data class Tiket(
     @SerialName("status_pembayaran")
     val statusPembayaran : String,
 )
+
+@Serializable
+data class AllTiketResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Tiket>
+)
+@Serializable
+data class TiketDetailResponse(
+    val status: Boolean,
+    val message: String,
+    val data: Tiket
+)

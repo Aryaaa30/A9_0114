@@ -1,12 +1,18 @@
 package com.example.finalproject.service
 
+import com.example.finalproject.model.AllFilmResponse
+import com.example.finalproject.model.AllTiketResponse
+import com.example.finalproject.model.Film
+import com.example.finalproject.model.FilmDetailResponse
 import com.example.finalproject.model.Tiket
+import com.example.finalproject.model.TiketDetailResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TiketService {
@@ -15,18 +21,18 @@ interface TiketService {
         "Content-Type: application/json",
     )
 
-    @GET("bacatiket.php")
-    suspend fun getAllTiket(): List<Tiket>
+    @GET("tiket")
+    suspend fun getAllTiket(): AllTiketResponse
 
-    @GET("baca1tiket.php")
-    suspend fun getTiketById(@Query("idTiket")idTiket: String): Tiket
+    @GET("tiket/{id}")
+    suspend fun getTiketById(@Path("idTiket")idTiket: String): TiketDetailResponse
 
-    @POST("inserttiket.php")
+    @POST("tiket")
     suspend fun insertTiket(@Body tiket: Tiket)
 
-    @PUT("edittiket.php/{idTiket}")
-    suspend fun updateTiket(@Query("idTiket")idTiket: String, @Body tiket: Tiket)
+    @PUT("tiket/{id}")
+    suspend fun updateTiket(@Path("idTiket")idTiket: String, @Body tiket: Tiket)
 
-    @DELETE("deletetiket.php/{idTiket}")
-    suspend fun deleteTiket(@Query("idTiket")idTiket: String):retrofit2.Response<Void>
+    @DELETE("tiket/{id}")
+    suspend fun deleteTiket(@Path("idTiket")idTiket: String):retrofit2.Response<Void>
 }

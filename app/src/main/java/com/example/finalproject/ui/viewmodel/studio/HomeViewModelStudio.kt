@@ -29,7 +29,7 @@ class HomeViewModelStudio (private val studio: StudioRepository): ViewModel() {
         viewModelScope.launch {
             studioUIState=HomeUiState.Loading
             studioUIState=try {
-                HomeUiState.Success(studio.getStudio())
+                HomeUiState.Success(studio.getStudio().data)
             }catch (e: IOException){
                 HomeUiState.Error
             }catch (e: HttpException){
