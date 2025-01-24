@@ -20,10 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FinalProjectTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    CinemasApp(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

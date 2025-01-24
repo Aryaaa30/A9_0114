@@ -1,4 +1,4 @@
-package com.example.finalproject
+    package com.example.finalproject
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,8 +9,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.example.finalproject.ui.navigation.PengelolaHalaman
 
-@OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CinemasApp(
     modifier: Modifier
@@ -25,7 +26,7 @@ fun CinemasApp(
                 .fillMaxSize()
                 .padding(it)
         ) {
-
+            PengelolaHalaman()
         }
     }
 }
