@@ -19,15 +19,4 @@ data class Film(
     val ratingUsia : String,
 )
 
-@Serializable
-data class AllFilmResponse(
-    val status: Boolean,
-    val message: String,
-    val data: List<Film>
-)
-@Serializable
-data class FilmDetailResponse(
-    val status: Boolean,
-    val message: String,
-    val data: Film
-)
+

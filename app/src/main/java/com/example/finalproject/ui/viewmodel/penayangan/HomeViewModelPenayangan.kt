@@ -29,7 +29,7 @@ class HomeViewModelPenayangan (private val penayangan: PenayanganRepository): Vi
         viewModelScope.launch {
             penayanganUIState=HomeUiState.Loading
             penayanganUIState=try {
-                HomeUiState.Success(penayangan.getPenayangan().data)
+                HomeUiState.Success(penayangan.getPenayangan())
             }catch (e: IOException){
                 HomeUiState.Error
             }catch (e: HttpException){

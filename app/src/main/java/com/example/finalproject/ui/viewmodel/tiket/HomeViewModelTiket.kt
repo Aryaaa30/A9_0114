@@ -29,7 +29,7 @@ class HomeViewModelTiket (private val tiket: TiketRepository): ViewModel() {
         viewModelScope.launch {
             tiketUIState=HomeUiState.Loading
             tiketUIState=try {
-                HomeUiState.Success(tiket.getTiket().data)
+                HomeUiState.Success(tiket.getTiket())
             }catch (e: IOException){
                 HomeUiState.Error
             }catch (e: HttpException){

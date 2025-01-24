@@ -21,16 +21,3 @@ data class Penayangan(
     @SerialName("harga_tiket")
     val hargaTiket : String,
 )
-
-@Serializable
-data class AllPenayanganResponse(
-    val status: Boolean,
-    val message: String,
-    val data: List<Penayangan>
-)
-@Serializable
-data class PenayanganDetailResponse(
-    val status: Boolean,
-    val message: String,
-    val data: Penayangan
-)

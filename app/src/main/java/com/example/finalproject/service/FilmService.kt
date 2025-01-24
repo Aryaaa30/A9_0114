@@ -1,8 +1,6 @@
 package com.example.finalproject.service
 
-import com.example.finalproject.model.AllFilmResponse
 import com.example.finalproject.model.Film
-import com.example.finalproject.model.FilmDetailResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -18,10 +16,10 @@ interface FilmService {
     )
 
     @GET("film")
-    suspend fun getAllFilm(): AllFilmResponse
+    suspend fun getAllFilm(): List<Film>
 
     @GET("film/{id}")
-    suspend fun getFilmById(@Path("idFilm")idFilm: String):FilmDetailResponse
+    suspend fun getFilmById(@Path("idFilm")idFilm: String):Film
 
     @POST("film")
     suspend fun insertFilm(@Body film: Film)

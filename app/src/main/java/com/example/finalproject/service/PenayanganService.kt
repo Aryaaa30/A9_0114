@@ -1,11 +1,6 @@
 package com.example.finalproject.service
 
-import com.example.finalproject.model.AllFilmResponse
-import com.example.finalproject.model.AllPenayanganResponse
-import com.example.finalproject.model.Film
-import com.example.finalproject.model.FilmDetailResponse
 import com.example.finalproject.model.Penayangan
-import com.example.finalproject.model.PenayanganDetailResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -13,7 +8,6 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface PenayanganService {
     @Headers(
@@ -22,10 +16,10 @@ interface PenayanganService {
     )
 
     @GET("penayangan")
-    suspend fun getAllPenayangan(): AllPenayanganResponse
+    suspend fun getAllPenayangan(): List<Penayangan>
 
     @GET("penayangan/{id}")
-    suspend fun getPenayanganById(@Path("idPenayangan")idPenayangan: String): PenayanganDetailResponse
+    suspend fun getPenayanganById(@Path("idPenayangan")idPenayangan: String): Penayangan
 
     @POST("penayangan")
     suspend fun insertPenayangan(@Body penayangan: Penayangan)

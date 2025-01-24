@@ -1,12 +1,11 @@
 package com.example.finalproject.repository
 
-import com.example.finalproject.model.AllPenayanganResponse
 import com.example.finalproject.model.Penayangan
 import com.example.finalproject.service.PenayanganService
 import java.io.IOException
 
 interface PenayanganRepository {
-    suspend fun getPenayangan(): AllPenayanganResponse
+    suspend fun getPenayangan(): List<Penayangan>
     suspend fun insertPenayangan(penayangan: Penayangan)
     suspend fun updatePenayangan(idPenayangan: String, penayangan: Penayangan)
     suspend fun deletePenayangan(idPenayangan: String)
@@ -41,11 +40,11 @@ class NetworkPenayanganRepository(
         }
     }
 
-    override suspend fun getPenayangan(): AllPenayanganResponse =
+    override suspend fun getPenayangan(): List<Penayangan> =
         PenayanganApiService.getAllPenayangan()
 
     override suspend fun getPenayanganById(idPenayangan: String): Penayangan {
-        return PenayanganApiService.getPenayanganById(idPenayangan).data
+        return PenayanganApiService.getPenayanganById(idPenayangan)
     }
 
 }

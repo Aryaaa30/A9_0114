@@ -17,15 +17,15 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
-interface AppContainer{
+interface AppContainer {
     val filmRepository: FilmRepository
     val penayanganRepository: PenayanganRepository
     val studioRepository: StudioRepository
     val tiketRepository: TiketRepository
 }
 
-class CinemasContainer : AppContainer{
-    private val baseUrl = "http://10.0.2.2:3000"
+class CinemasContainer : AppContainer {
+    private val baseUrl = "http://10.0.2.2:3000/"
     private val json = Json { ignoreUnknownKeys = true }
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
