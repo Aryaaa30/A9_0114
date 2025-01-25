@@ -19,14 +19,14 @@ interface PenayanganService {
     suspend fun getAllPenayangan(): List<Penayangan>
 
     @GET("penayangan/{id}")
-    suspend fun getPenayanganById(@Path("idPenayangan")idPenayangan: String): Penayangan
+    suspend fun getPenayanganById(@Path("id")idPenayangan: String): Penayangan
 
     @POST("penayangan")
     suspend fun insertPenayangan(@Body penayangan: Penayangan)
 
     @PUT("penayangan/{id}")
-    suspend fun updatePenayangan(@Path("idPenayangan")idPenayangan: String, @Body penayangan: Penayangan)
+    suspend fun updatePenayangan(@Path("id")idPenayangan: String, @Body penayangan: Penayangan)
 
     @DELETE("penayangan/{id}")
-    suspend fun deletePenayangan(@Path("idPenayangan")idPenayangan: String):retrofit2.Response<Void>
+    suspend fun deletePenayangan(@Path("id")idPenayangan: String):retrofit2.Response<Void>
 }

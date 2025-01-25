@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -28,6 +29,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             HomeViewFilm(
                 navigateToItemEntry = {navController.navigate(DestinasiInsertFilm.route)},
                 onDetailClick = { idFilm ->
+                    Log.d("Navigation", "Navigating to detail with ID: $idFilm")
                     navController.navigate("${DestinasiDetailFilm.route}/$idFilm")
                 }
             )
@@ -45,13 +47,13 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             type = NavType.StringType })
         ){
             val idFilm = it.arguments?.getString(DestinasiDetailFilm.FILM)
+            Log.d("DetailPage", "Received ID: $idFilm")
             idFilm?.let { idFilm ->
                 DetailViewFilm(
                     navigateToItemUpdate = { navController.navigate("${DestinasiUpdateFilm.route}/$idFilm") },
                     navigateBack = { navController.navigate(DestinasiHomeFilm.route) {
                         popUpTo(DestinasiHomeFilm.route) { inclusive = true }
-                    }
-                    }
+                    }}
                 )
             }
         }

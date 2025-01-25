@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            FinalProjectTheme {
+            FinalProjectTheme(useGrayTheme = true) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     CinemasApp(modifier = Modifier.padding(innerPadding))
                 }

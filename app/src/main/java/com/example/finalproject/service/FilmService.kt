@@ -19,15 +19,15 @@ interface FilmService {
     suspend fun getAllFilm(): List<Film>
 
     @GET("film/{id}")
-    suspend fun getFilmById(@Path("idFilm")idFilm: String):Film
+    suspend fun getFilmById(@Path("id")idFilm: String):Film
 
     @POST("film")
     suspend fun insertFilm(@Body film: Film)
 
     @PUT("film/{id}")
-    suspend fun updateFilm(@Path("idFilm")idFilm: String, @Body film: Film)
+    suspend fun updateFilm(@Path("id")idFilm: String, @Body film: Film)
 
     @DELETE("film/{id}")
-    suspend fun deleteFilm(@Path("idFilm")idFilm: String):retrofit2.Response<Void>
+    suspend fun deleteFilm(@Path("id")idFilm: String):retrofit2.Response<Void>
 
 }

@@ -19,14 +19,14 @@ interface StudioService {
     suspend fun getAllStudio(): List<Studio>
 
     @GET("studio/{id}")
-    suspend fun getStudioById(@Path("idStudio")idStudio: String): Studio
+    suspend fun getStudioById(@Path("id")idStudio: String): Studio
 
     @POST("studio")
     suspend fun insertStudio(@Body studio: Studio)
 
     @PUT("studio/{id}")
-    suspend fun updateStudio(@Path("idStudio")idStudio: String, @Body studio: Studio)
+    suspend fun updateStudio(@Path("id")idStudio: String, @Body studio: Studio)
 
     @DELETE("studio/{id}")
-    suspend fun deleteStudio(@Path("idStudio")idStudio: String):retrofit2.Response<Void>
+    suspend fun deleteStudio(@Path("id")idStudio: String):retrofit2.Response<Void>
 }

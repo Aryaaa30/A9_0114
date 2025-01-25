@@ -9,6 +9,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -33,21 +34,30 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+// Skema warna untuk tema abu-abu (Gray Theme)
+private val GrayColorScheme = darkColorScheme(
+    primary = Gray200,
+    secondary = Gray100,
+    tertiary = Gray300,
+    background = Gray900,
+    surface = Gray900,
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onTertiary = Color.White,
+    onBackground = Color.LightGray,
+    onSurface = Color.LightGray
+)
+
 @Composable
 fun FinalProjectTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    darkTheme: Boolean = isSystemInDarkTheme(), // Menyesuaikan dengan pengaturan sistem
+    useGrayTheme: Boolean = false, // Tambahkan opsi untuk menggunakan tema abu-abu
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        useGrayTheme -> GrayColorScheme // Gunakan tema abu-abu jika dipilih
+        darkTheme -> DarkColorScheme    // Gunakan tema gelap
+        else -> LightColorScheme        // Gunakan tema terang
     }
 
     MaterialTheme(
@@ -56,3 +66,4 @@ fun FinalProjectTheme(
         content = content
     )
 }
+
