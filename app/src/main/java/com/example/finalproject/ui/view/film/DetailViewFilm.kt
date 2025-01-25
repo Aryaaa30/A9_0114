@@ -27,6 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,7 @@ import com.example.finalproject.ui.viewmodel.film.DetailUiState
 import com.example.finalproject.ui.viewmodel.film.DetailViewModelFilm
 
 object DestinasiDetailFilm: DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detail_film"
     override val titleRes = "Detail Film"
     const val FILM = "idFilm"
     val routesWithArg = "$route/{$FILM}"
@@ -50,6 +51,7 @@ object DestinasiDetailFilm: DestinasiNavigasi {
 fun DetailViewFilm(
     navigateBack: () -> Unit,
     navigateToItemUpdate: () -> Unit,
+    navigateToHomePenayangan: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailViewModelFilm = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -86,7 +88,8 @@ fun DetailViewFilm(
                     if (state is DetailUiState.Success) state.film.idFilm else ""
                 })
                 navigateBack()
-            }
+            },
+            navigateToHomePenayangan = navigateToHomePenayangan
         )
     }
 }
@@ -97,7 +100,8 @@ fun DetailStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     detailUiState: DetailUiState,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    navigateToHomePenayangan: () -> Unit
 ) {
     when (detailUiState) {
         is DetailUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -110,7 +114,8 @@ fun DetailStatus(
                 ItemDetailMhs(
                     film = detailUiState.film,
                     modifier = modifier.fillMaxWidth(),
-                    onDeleteClick = onDeleteClick
+                    onDeleteClick = onDeleteClick,
+                    navigateToHomePenayangan = navigateToHomePenayangan
                 )
             }
         }
@@ -123,12 +128,16 @@ fun DetailStatus(
 fun ItemDetailMhs(
     modifier: Modifier = Modifier,
     film: Film,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    navigateToHomePenayangan: () -> Unit
 ) {
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
     Card(
         modifier = modifier.padding(16.dp),
         shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Black
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Column(
@@ -156,6 +165,17 @@ fun ItemDetailMhs(
             ) {
                 Text(text = "Delete")
             }
+            Spacer(modifier = Modifier.padding(8.dp)) // Spasi antara tombol
+
+            // Tombol Detail Lanjut
+            Button(
+                onClick = {
+                    navigateToHomePenayangan()
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Detail Lanjut")
+            }
 
             if (deleteConfirmationRequired) {
                 DeleteConfirmationDialog(
@@ -170,7 +190,6 @@ fun ItemDetailMhs(
         }
     }
 }
-
 
 @Composable
 fun ComponentDetailFilm(

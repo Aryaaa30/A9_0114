@@ -39,7 +39,7 @@ import com.example.finalproject.ui.viewmodel.penayangan.DetailUiState
 import com.example.finalproject.ui.viewmodel.penayangan.DetailViewModelPenayangan
 
 object DestinasiDetailPenayangan: DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detail_penayangan"
     override val titleRes = "Detail Penayangan"
     const val Penayangan = "idPenayangan"
     val routesWithArg = "$route/{${Penayangan}}"

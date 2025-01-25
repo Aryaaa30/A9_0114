@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 object DestinasiUpdatePenayangan: DestinasiNavigasi {
-    override val route = "update"
+    override val route = "update_penayangan"
     override val titleRes = "Edit Penayangan"
     const val Penayangan = "idPenayangan"
     val routesWithArg = "$route/{$Penayangan}"

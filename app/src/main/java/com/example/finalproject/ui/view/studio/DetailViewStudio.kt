@@ -39,7 +39,7 @@ import com.example.finalproject.ui.viewmodel.studio.DetailUiState
 import com.example.finalproject.ui.viewmodel.studio.DetailViewModelStudio
 
 object DestinasiDetailStudio: DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detail_studio"
     override val titleRes = "Detail Studio"
     const val Studio = "idStudio"
     val routesWithArg = "$route/{$Studio}"

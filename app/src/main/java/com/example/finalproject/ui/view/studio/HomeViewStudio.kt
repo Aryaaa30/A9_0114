@@ -51,7 +51,7 @@ import com.example.finalproject.ui.viewmodel.studio.HomeUiState
 import com.example.finalproject.ui.viewmodel.studio.HomeViewModelStudio
 
 object DestinasiHomeStudio : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "home_studio"
     override val titleRes = "Studio"
 }
 

@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 
 
 object DestinasiInsertFilm: DestinasiNavigasi {
-    override val route ="item_entry"
+    override val route ="insert_film"
     override val titleRes = "Insert Film"
 }
 

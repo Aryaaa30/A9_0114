@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 object DestinasiUpdateStudio: DestinasiNavigasi {
-    override val route = "update"
+    override val route = "update_studio"
     override val titleRes = "Edit Studio"
     const val Studio = "idStudio"
     val routesWithArg = "$route/{$Studio}"

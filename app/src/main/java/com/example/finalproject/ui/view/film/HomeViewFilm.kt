@@ -34,7 +34,7 @@ import com.example.finalproject.ui.viewmodel.film.HomeUiState
 import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
 
 object DestinasiHomeFilm : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "home_film"
     override val titleRes = "Film"
 }
 
@@ -44,6 +44,7 @@ fun HomeViewFilm(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
+    navigateBack: () -> Unit,
     viewModel: HomeViewModelFilm = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -52,7 +53,8 @@ fun HomeViewFilm(
         topBar = {
             CostumeTopAppBar(
                 title = DestinasiHomeFilm.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getFilm()

@@ -20,7 +20,7 @@ import kotlinx.coroutines.withContext
 
 
 object DestinasiUpdateFilm: DestinasiNavigasi {
-    override val route = "update"
+    override val route = "update_film"
     override val titleRes = "Edit Film"
     const val FILM = "idFilm"
     val routesWithArg = "$route/{$FILM}"

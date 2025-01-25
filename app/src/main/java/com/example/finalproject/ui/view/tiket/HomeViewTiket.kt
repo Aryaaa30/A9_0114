@@ -51,7 +51,7 @@ import com.example.finalproject.ui.viewmodel.tiket.HomeUiState
 import com.example.finalproject.ui.viewmodel.tiket.HomeViewModelTiket
 
 object DestinasiHomeTiket : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "home_tiket"
     override val titleRes = "Tiket"
 }
 

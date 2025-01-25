@@ -31,7 +31,7 @@ import com.example.finalproject.ui.viewmodel.studio.InsertViewModelStudio
 import kotlinx.coroutines.launch
 
 object DestinasiInsertStudio: DestinasiNavigasi {
-    override val route ="item_entry"
+    override val route ="insert_studio"
     override val titleRes = "Insert Studio"
 }
 

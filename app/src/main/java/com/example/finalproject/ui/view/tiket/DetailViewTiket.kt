@@ -39,7 +39,7 @@ import com.example.finalproject.ui.viewmodel.tiket.DetailUiState
 import com.example.finalproject.ui.viewmodel.tiket.DetailViewModelTiket
 
 object DestinasiDetailTiket: DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detail_tiket"
     override val titleRes = "Detail Tiket"
     const val Tiket = "idTiket"
     val routesWithArg = "$route/{$Tiket}"

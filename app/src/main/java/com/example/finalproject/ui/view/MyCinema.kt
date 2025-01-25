@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.view
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,13 +19,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.finalproject.R
 import com.example.finalproject.ui.navigation.DestinasiNavigasi
 import com.example.finalproject.ui.view.film.DestinasiHomeFilm
 import com.example.finalproject.ui.view.penayangan.DestinasiHomePenayangan
@@ -38,148 +43,135 @@ object DestinasiBeranda : DestinasiNavigasi {
 
 @Composable
 fun MyCinema(navController: NavController) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF42A5F5),
-                        Color(0xFF0D47A1),
-                        Color(0xFF6A1B9A)
-                    )
-                )
-            )
-            .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color(0xFF1C1C1C)) // Latar belakang gelap
     ) {
-        // Konten Utama
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween // Mengatur jarak elemen atas & bawah
         ) {
-            Spacer(modifier = Modifier.height(32.dp)) // Space awal
-
-            // Konten Utama dengan Judul
+            // Header
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(topEnd = 15.dp, topStart = 15.dp)
-                    )
+                    .fillMaxWidth()
+                    .background(Color(0xFF252525))
+                    .padding(16.dp)
             ) {
-                Column(
+                Text(
+                    text = "MyCinema",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFE53935), // Merah mencolok
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp)) // Mengurangi jarak antara header dan box gambar
+
+            // Konten Utama
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Banner
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .height(300.dp)
+                        .background(Color.Gray, shape = RoundedCornerShape(8.dp))
+                        .padding(8.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Spacer(modifier = Modifier.height(50.dp))
-                    Text(
-                        text = "Selamat Datang di MyCinema",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFD32F2F), // Warna merah agar mencolok
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Text(
-                        text = "Menu Manajemen",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 19.sp,
-                    )
-                    Text(
-                        text = "Pilih menu yang ingin dikelola",
-                        fontWeight = FontWeight.Light,
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp)) // Space sebelum item menu
-
-                    // Tombol Menu
-                    MenuButton(
-                        text = "Manajemen Film",
-                        color = Color(0xFFFFB74D),
-                        onClick = { navController.navigate(DestinasiHomeFilm.route) }
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    MenuButton(
-                        text = "Manajemen Penayangan",
-                        color = Color(0xFF66BB6A),
-                        onClick = { navController.navigate(DestinasiHomePenayangan.route) }
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    MenuButton(
-                        text = "Manajemen Studio",
-                        color = Color(0xFF29B6F6),
-                        onClick = { navController.navigate(DestinasiHomeStudio.route) }
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    MenuButton(
-                        text = "Manajemen Tiket",
-                        color = Color(0xFFAB47BC),
-                        onClick = { navController.navigate(DestinasiHomeTiket.route) }
+                    Image(
+                        painter = painterResource(id = R.drawable.mycinema),
+                        contentDescription = "Sinema",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
                     )
                 }
-                // Footer
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter)
-                        .padding(16.dp)
-                ) {
-                    Divider(
-                        color = Color.Black,
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp)
-                    )
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Tombol dengan tema bioskop
+                MenuButton(
+                    text = "Manajemen Film",
+                    gradient = Brush.horizontalGradient(
+                        listOf(Color(0xFFB71C1C), Color(0xFFFFD740)) // Merah tua ke emas
+                    ),
+                    onClick = { navController.navigate(DestinasiHomeFilm.route) }
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                MenuButton(
+                    text = "Manajemen Penayangan",
+                    gradient = Brush.horizontalGradient(
+                        listOf(Color(0xFF212121), Color(0xFF37474F)) // Hitam ke biru tua
+                    ),
+                    onClick = { navController.navigate(DestinasiHomePenayangan.route) }
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                MenuButton(
+                    text = "Manajemen Studio",
+                    gradient = Brush.horizontalGradient(
+                        listOf(Color(0xFF512DA8), Color(0xFF1976D2)) // Ungu tua ke biru
+                    ),
+                    onClick = { navController.navigate(DestinasiHomeStudio.route) }
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                MenuButton(
+                    text = "Manajemen Tiket",
+                    gradient = Brush.horizontalGradient(
+                        listOf(Color(0xFFF57C00), Color(0xFFFFD740)) // Oranye ke emas
+                    ),
+                    onClick = { navController.navigate(DestinasiHomeTiket.route) }
+                )
+            }
+
+            // Footer
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFF252525))
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "© 2024 MyCinema",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Color.Black
+                        fontWeight = FontWeight.Medium,
+                        color = Color.Gray
                     )
                     Text(
                         text = "Powered by Creativity",
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Color.Black
+                        fontWeight = FontWeight.Light,
+                        color = Color.Gray
                     )
                 }
             }
         }
     }
 }
+
 @Composable
-fun MenuButton(text: String, color: Color, onClick: () -> Unit) {
-    Card(
+fun MenuButton(text: String, gradient: Brush, onClick: () -> Unit) {
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
-            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(gradient)
             .clickable { onClick() }
-            .shadow(elevation = 6.dp, shape = RoundedCornerShape(8.dp))  // Shadow effect on card
-            .background(color = color, shape = RoundedCornerShape(8.dp)),  // Card with background color and shape
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = color)  // Background color of Card
+            .padding(horizontal = 16.dp),
+        contentAlignment = Alignment.Center
     ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                text = text,
-                fontSize = 20.sp,
-                color = Color.White,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        Text(
+            text = text,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White
+        )
     }
 }

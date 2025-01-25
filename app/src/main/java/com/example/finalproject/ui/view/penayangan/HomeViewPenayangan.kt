@@ -51,7 +51,7 @@ import com.example.finalproject.ui.viewmodel.penayangan.HomeUiState
 import com.example.finalproject.ui.viewmodel.penayangan.HomeViewModelPenayangan
 
 object DestinasiHomePenayangan : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "home_penayangan"
     override val titleRes = "Penayangan"
 }
 
@@ -61,6 +61,7 @@ fun HomeViewPenayangan(
     navigateToItemEntry: ()-> Unit,
     modifier: Modifier=Modifier,
     onDetailClick: (String) -> Unit={},
+    navigateBack: () -> Unit,
     viewModel: HomeViewModelPenayangan = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -69,7 +70,8 @@ fun HomeViewPenayangan(
         topBar = {
             CostumeTopAppBar(
                 title = DestinasiHomePenayangan.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getPenayangan()

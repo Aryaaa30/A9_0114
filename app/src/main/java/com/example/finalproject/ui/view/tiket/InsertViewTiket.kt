@@ -30,7 +30,7 @@ import com.example.finalproject.ui.viewmodel.tiket.InsertViewModelTiket
 import kotlinx.coroutines.launch
 
 object DestinasiInsertTiket: DestinasiNavigasi {
-    override val route ="item_entry"
+    override val route ="insert_tiket"
     override val titleRes = "Insert Tiket"
 }
 
