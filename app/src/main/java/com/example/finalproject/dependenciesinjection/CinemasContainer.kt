@@ -22,6 +22,10 @@ interface AppContainer {
     val penayanganRepository: PenayanganRepository
     val studioRepository: StudioRepository
     val tiketRepository: TiketRepository
+    // Properti ini harus bersifat public (default di interface)
+    val penayanganService: PenayanganService
+    val filmService: FilmService
+    val studioService: StudioService
 }
 
 class CinemasContainer : AppContainer {
@@ -31,27 +35,40 @@ class CinemasContainer : AppContainer {
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(baseUrl).build()
 
-    private val filmService: FilmService by lazy {
+    // Menyediakan FilmService, dengan modifier public dan override
+    override val filmService: FilmService by lazy {
         retrofit.create(FilmService::class.java)
     }
+
+    // Menyediakan FilmRepository
     override val filmRepository: FilmRepository by lazy {
         NetworkFilmRepository(filmService)
     }
-    private val penayanganService: PenayanganService by lazy {
+
+    // Menyediakan PenayanganService, dengan modifier public dan override
+    override val penayanganService: PenayanganService by lazy {
         retrofit.create(PenayanganService::class.java)
     }
+
+    // Menyediakan PenayanganRepository
     override val penayanganRepository: PenayanganRepository by lazy {
         NetworkPenayanganRepository(penayanganService)
     }
-    private val studioService: StudioService by lazy {
+
+    // Menyediakan StudioService
+    override val studioService: StudioService by lazy {
         retrofit.create(StudioService::class.java)
     }
+
     override val studioRepository: StudioRepository by lazy {
         NetworkStudioRepository(studioService)
     }
+
+    // Menyediakan TiketService
     private val tiketService: TiketService by lazy {
         retrofit.create(TiketService::class.java)
     }
+
     override val tiketRepository: TiketRepository by lazy {
         NetworkTiketRepository(tiketService)
     }

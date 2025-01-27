@@ -117,12 +117,13 @@ fun FormInput(
             enabled = enabled,
             singleLine = true
         )
+        // idFilm akan otomatis terisi dari data yang diambil di ViewModel
         OutlinedTextField(
             value = insertUiEvent.idPenayangan,
-            onValueChange = {onValueChange(insertUiEvent.copy(idPenayangan = it))},
+            onValueChange = { },
             label = { Text("ID Penayangan") },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false,  // Disable agar pengguna tidak bisa mengubahnya
             singleLine = true
         )
         OutlinedTextField(

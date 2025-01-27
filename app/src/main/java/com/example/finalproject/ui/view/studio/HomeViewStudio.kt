@@ -61,6 +61,7 @@ fun HomeViewStudio(
     navigateToItemEntry: ()-> Unit,
     modifier: Modifier=Modifier,
     onDetailClick: (String) -> Unit={},
+    navigateBack: () -> Unit,
     viewModel: HomeViewModelStudio = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -69,7 +70,8 @@ fun HomeViewStudio(
         topBar = {
             CostumeTopAppBar(
                 title = DestinasiHomeStudio.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getStudio()

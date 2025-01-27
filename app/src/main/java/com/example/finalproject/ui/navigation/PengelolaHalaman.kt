@@ -163,6 +163,11 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         composable(DestinasiHomeStudio.route) {
             HomeViewStudio(
                 navigateToItemEntry = { navController.navigate(DestinasiInsertStudio.route) },
+                navigateBack = {
+                    navController.navigate(DestinasiBeranda.route) {
+                        popUpTo(DestinasiBeranda.route) { inclusive = true }
+                    }
+                },
                 onDetailClick = { idStudio ->
                     navController.navigate("${DestinasiDetailStudio.route}/$idStudio")
                 }
@@ -208,6 +213,11 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         composable(DestinasiHomeTiket.route) {
             HomeViewTiket(
                 navigateToItemEntry = { navController.navigate(DestinasiInsertTiket.route) },
+                navigateBack = {
+                    navController.navigate(DestinasiBeranda.route) {
+                        popUpTo(DestinasiBeranda.route) { inclusive = true }
+                    }
+                },
                 onDetailClick = { idTiket ->
                     navController.navigate("${DestinasiDetailTiket.route}/$idTiket")
                 }

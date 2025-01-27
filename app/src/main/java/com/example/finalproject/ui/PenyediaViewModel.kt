@@ -30,7 +30,14 @@ object PenyediaViewModel{
         initializer { DetailViewModelFilm(createSavedStateHandle(),aplikasiFilm().container.filmRepository) }
         initializer { UpdateViewModelFilm(createSavedStateHandle(),aplikasiFilm().container.filmRepository) }
         initializer { HomeViewModelPenayangan(aplikasiFilm().container.penayanganRepository) }
-        initializer { InsertViewModelPenayangan(aplikasiFilm().container.penayanganRepository) }
+        initializer {
+            InsertViewModelPenayangan(
+                penayanganService = aplikasiFilm().container.penayanganService,
+                filmService = aplikasiFilm().container.filmService,
+                studioService = aplikasiFilm().container.studioService,
+                penayangan = aplikasiFilm().container.penayanganRepository // Perbaikan ada di sini
+            )
+        }
         initializer { DetailViewModelPenayangan(createSavedStateHandle(),aplikasiFilm().container.penayanganRepository) }
         initializer { UpdateViewModelPenayangan(createSavedStateHandle(),aplikasiFilm().container.penayanganRepository) }
         initializer { HomeViewModelStudio(aplikasiFilm().container.studioRepository) }
@@ -38,7 +45,12 @@ object PenyediaViewModel{
         initializer { DetailViewModelStudio(createSavedStateHandle(),aplikasiFilm().container.studioRepository) }
         initializer { UpdateViewModelStudio(createSavedStateHandle(),aplikasiFilm().container.studioRepository) }
         initializer { HomeViewModelTiket(aplikasiFilm().container.tiketRepository) }
-        initializer { InsertViewModelTiket(aplikasiFilm().container.tiketRepository) }
+        initializer {
+            InsertViewModelTiket(
+                aplikasiFilm().container.tiketRepository,
+                penayanganService = aplikasiFilm().container.penayanganService
+            )
+        }
         initializer { DetailViewModelTiket(createSavedStateHandle(),aplikasiFilm().container.tiketRepository) }
         initializer { UpdateViewModelTiket(createSavedStateHandle(),aplikasiFilm().container.tiketRepository) }
     }

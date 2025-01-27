@@ -61,6 +61,7 @@ fun HomeViewTiket(
     navigateToItemEntry: ()-> Unit,
     modifier: Modifier=Modifier,
     onDetailClick: (String) -> Unit={},
+    navigateBack: () -> Unit,
     viewModel: HomeViewModelTiket = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -69,7 +70,8 @@ fun HomeViewTiket(
         topBar = {
             CostumeTopAppBar(
                 title = DestinasiHomeTiket.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getTiket()

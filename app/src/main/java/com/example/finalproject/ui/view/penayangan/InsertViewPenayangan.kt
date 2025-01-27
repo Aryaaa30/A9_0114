@@ -101,59 +101,67 @@ fun EntryBody(
 fun FormInput(
     insertUiEvent: InsertUiEvent,
     modifier: Modifier = Modifier,
-    onValueChange: (InsertUiEvent)->Unit={},
+    onValueChange: (InsertUiEvent) -> Unit = {},
     enabled: Boolean = true
 ) {
-    Column (
+    Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp)
-    ){
+    ) {
         OutlinedTextField(
             value = insertUiEvent.idPenayangan,
-            onValueChange = {onValueChange(insertUiEvent.copy(idPenayangan = it))},
+            onValueChange = { onValueChange(insertUiEvent.copy(idPenayangan = it)) },
             label = { Text("ID Penayangan") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
+
+        // idFilm akan otomatis terisi dari data yang diambil di ViewModel
         OutlinedTextField(
             value = insertUiEvent.idFilm,
-            onValueChange = {onValueChange(insertUiEvent.copy(idFilm = it))},
+            onValueChange = { },
             label = { Text("ID Film") },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false,  // Disable agar pengguna tidak bisa mengubahnya
             singleLine = true
         )
+
+        // idFilm akan otomatis terisi dari data yang diambil di ViewModel
         OutlinedTextField(
             value = insertUiEvent.idStudio,
-            onValueChange = {onValueChange(insertUiEvent.copy(idStudio = it))},
+            onValueChange = { },
             label = { Text("ID Studio") },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false,  // Disable agar pengguna tidak bisa mengubahnya
             singleLine = true
         )
+
         OutlinedTextField(
             value = insertUiEvent.tanggalPenayangan,
-            onValueChange = {onValueChange(insertUiEvent.copy(tanggalPenayangan = it))},
+            onValueChange = { onValueChange(insertUiEvent.copy(tanggalPenayangan = it)) },
             label = { Text("Tanggal Penayangan") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
+
         OutlinedTextField(
             value = insertUiEvent.hargaTiket,
-            onValueChange = {onValueChange(insertUiEvent.copy(hargaTiket = it))},
+            onValueChange = { onValueChange(insertUiEvent.copy(hargaTiket = it)) },
             label = { Text("Harga Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
-        if (enabled){
+
+        if (enabled) {
             Text(
                 text = "Isi Semua Data",
                 modifier = Modifier.padding(12.dp)
             )
         }
+
         Divider(
             thickness = 8.dp,
             modifier = Modifier.padding(12.dp)
