@@ -11,11 +11,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ConfirmationNumber
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LiveTv
+import androidx.compose.material.icons.filled.LocalMovies
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -25,11 +35,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
 import com.example.finalproject.R
 import com.example.finalproject.model.Film
 import com.example.finalproject.ui.PenyediaViewModel
 import com.example.finalproject.ui.costumwigdet.CostumeTopAppBar
 import com.example.finalproject.ui.navigation.DestinasiNavigasi
+import com.example.finalproject.ui.view.DestinasiBeranda
+import com.example.finalproject.ui.view.IconMenuButton
+import com.example.finalproject.ui.view.penayangan.DestinasiHomePenayangan
+import com.example.finalproject.ui.view.studio.DestinasiHomeStudio
+import com.example.finalproject.ui.view.tiket.DestinasiHomeTiket
 import com.example.finalproject.ui.viewmodel.film.HomeUiState
 import com.example.finalproject.ui.viewmodel.film.HomeViewModelFilm
 
@@ -48,6 +64,9 @@ fun HomeViewFilm(
     viewModel: HomeViewModelFilm = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val navController = rememberNavController()
+    var currentDestination by remember { mutableStateOf(DestinasiHomeFilm.route) }
+
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -68,6 +87,75 @@ fun HomeViewFilm(
                 modifier = Modifier.padding(18.dp)
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Film")
+            }
+        },
+        bottomBar = {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .clip(RoundedCornerShape(50.dp))
+                    .background(Color(0xFF252525)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconMenuButton(
+                        icon = Icons.Default.LocalMovies,
+                        description = "Film",
+                        isActive = currentDestination == DestinasiHomeFilm.route,
+                        onClick = {
+                            navController.navigate(DestinasiHomeFilm.route)
+                            currentDestination = DestinasiHomeFilm.route
+                        },
+                        text = "Film"
+                    )
+                    IconMenuButton(
+                        icon = Icons.Default.Event,
+                        description = "Penayangan",
+                        isActive = currentDestination == DestinasiHomePenayangan.route,
+                        onClick = {
+                            navController.navigate(DestinasiHomePenayangan.route)
+                            currentDestination = DestinasiHomePenayangan.route
+                        },
+                        text = "Penayangan"
+                    )
+                    IconMenuButton(
+                        icon = Icons.Default.Home,
+                        description = "Home",
+                        isActive = currentDestination == DestinasiBeranda.route,
+                        onClick = {
+                            navController.navigate(DestinasiBeranda.route)
+                            currentDestination = DestinasiBeranda.route
+                        },
+                        text = "Home"
+                    )
+                    IconMenuButton(
+                        icon = Icons.Default.LiveTv,
+                        description = "Studio",
+                        isActive = currentDestination == DestinasiHomeStudio.route,
+                        onClick = {
+                            navController.navigate(DestinasiHomeStudio.route)
+                            currentDestination = DestinasiHomeStudio.route
+                        },
+                        text = "Studio"
+                    )
+                    IconMenuButton(
+                        icon = Icons.Default.ConfirmationNumber,
+                        description = "Tiket",
+                        isActive = currentDestination == DestinasiHomeTiket.route,
+                        onClick = {
+                            navController.navigate(DestinasiHomeTiket.route)
+                            currentDestination = DestinasiHomeTiket.route
+                        },
+                        text = "Tiket"
+                    )
+                }
             }
         }
     ) { innerPadding ->
@@ -275,6 +363,8 @@ fun FilmCard(
         }
     }
 }
+
+
 
 
 

@@ -56,7 +56,7 @@ class InsertViewModelTiket (
     }
     private fun loadHargaTiket() {
         // Ambil harga tiket dari tabel penayangan (ganti dengan sumber data sebenarnya)
-        hargaTiket = 400000 // Contoh harga tiket
+        hargaTiket = 40000 // Contoh harga tiket
     }
 
 

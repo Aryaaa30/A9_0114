@@ -61,7 +61,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         composable(DestinasiBeranda.route) {
             MyCinema(
                 navController = navController,
-                currentDestination = DestinasiBeranda.route // Tambahkan nilai ini
+                currentDestination = navController.currentDestination?.route ?: DestinasiBeranda.route
             )
         }
         composable(DestinasiHomeFilm.route) {
@@ -122,6 +122,8 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         }
         composable(DestinasiHomePenayangan.route) {
             HomeViewPenayangan(
+                navController = navController,
+                currentDestination = navController.currentDestination?.route ?: DestinasiHomePenayangan.route,
                 navigateToItemEntry = { navController.navigate(DestinasiInsertPenayangan.route) },
                 navigateBack = {
                     navController.navigate(DestinasiHomeFilm.route) {
