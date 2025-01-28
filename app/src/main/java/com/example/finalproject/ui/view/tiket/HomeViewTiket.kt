@@ -278,7 +278,7 @@ fun TiketCard(
             .shadow(10.dp, shape = RoundedCornerShape(16.dp)),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White // Latar belakang kartu putih
+            containerColor = Color.Black // Latar belakang kartu putih
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {

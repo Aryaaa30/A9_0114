@@ -272,8 +272,10 @@ fun StudioCard(
             .padding(8.dp)
             .shadow(10.dp, shape = RoundedCornerShape(16.dp)),
         shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Black
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White) // Warna latar belakang putih
     ) {
         Row(
             modifier = Modifier
