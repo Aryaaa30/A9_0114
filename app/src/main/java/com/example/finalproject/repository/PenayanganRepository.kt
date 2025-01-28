@@ -47,4 +47,9 @@ class NetworkPenayanganRepository(
         return PenayanganApiService.getPenayanganById(idPenayangan)
     }
 
+    suspend fun getHargaTiketById(idPenayangan: String): String {
+        val penayangan = PenayanganApiService.getPenayanganById(idPenayangan)
+        return penayangan.hargaTiket // Mengambil harga tiket dari response
+    }
+
 }

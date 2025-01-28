@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.ui.PenyediaViewModel
@@ -128,18 +129,19 @@ fun FormInput(
         )
         OutlinedTextField(
             value = insertUiEvent.jumlahTiket,
-            onValueChange = {onValueChange(insertUiEvent.copy(jumlahTiket = it))},
+            onValueChange = { onValueChange(insertUiEvent.copy(jumlahTiket = it)) },
             label = { Text("Jumlah Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
-            singleLine = true
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
         )
         OutlinedTextField(
             value = insertUiEvent.totalHarga,
-            onValueChange = {onValueChange(insertUiEvent.copy(totalHarga = it))},
+            onValueChange = { }, // Tidak perlu mengubah nilai total harga secara manual
             label = { Text("Total Harga") },
             modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
+            enabled = false, // Nonaktifkan agar pengguna tidak bisa mengedit langsung
             singleLine = true
         )
         OutlinedTextField(

@@ -10,7 +10,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.finalproject.ui.view.DestinasiBeranda
+import com.example.finalproject.ui.view.DestinasiSplash
 import com.example.finalproject.ui.view.MyCinema
+import com.example.finalproject.ui.view.SplashScreen
 import com.example.finalproject.ui.view.film.DestinasiDetailFilm
 import com.example.finalproject.ui.view.film.DestinasiHomeFilm
 import com.example.finalproject.ui.view.film.DestinasiInsertFilm
@@ -48,11 +50,19 @@ import com.example.finalproject.ui.view.tiket.UpdateViewTiket
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiBeranda.route, // Ubah ke MyCinema sebagai startDestination
+        startDestination = DestinasiSplash.route, // Ubah ke MyCinema sebagai startDestination
         modifier = Modifier,
     ) {
+        composable(DestinasiSplash.route) {
+            SplashScreen(
+                navController = navController,
+            )
+        }
         composable(DestinasiBeranda.route) {
-            MyCinema(navController = navController)
+            MyCinema(
+                navController = navController,
+                currentDestination = DestinasiBeranda.route // Tambahkan nilai ini
+            )
         }
         composable(DestinasiHomeFilm.route) {
             HomeViewFilm(
@@ -137,6 +147,11 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                             popUpTo(DestinasiHomePenayangan.route) { inclusive = true }
                         }
                     },
+                    navigateToInsertTiket = {
+                        navController.navigate(DestinasiInsertTiket.route){
+                            popUpTo(DestinasiInsertTiket.route) { inclusive = true }
+                        }
+                    }
                 )
             }
         }

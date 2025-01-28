@@ -216,7 +216,7 @@ fun TiketCard(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(R.drawable.man), // Ganti dengan logo Anda
+                    painter = painterResource(R.drawable.ic_launcher_background), // Ganti dengan logo Anda
                     contentDescription = "Logo",
                     modifier = Modifier.size(40.dp)
                 )

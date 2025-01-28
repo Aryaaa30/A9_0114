@@ -38,7 +38,7 @@ data class InsertUiEvent(
     val durasi: String="",
     val deskripsi: String="",
     val genre: String="",
-    val ratingUsia: String=""
+    val ratingUsia: String="",
 )
 
 fun InsertUiEvent.toMhs(): Film = Film(
@@ -47,7 +47,7 @@ fun InsertUiEvent.toMhs(): Film = Film(
     durasi = durasi,
     deskripsi = deskripsi,
     genre = genre,
-    ratingUsia = ratingUsia
+    ratingUsia = ratingUsia,
 )
 
 fun Film.toUiStateMhs(): InsertUiState = InsertUiState(
@@ -60,5 +60,5 @@ fun Film.toInsertUiEvent(): InsertUiEvent = InsertUiEvent(
     durasi = durasi,
     deskripsi = deskripsi,
     genre = genre,
-    ratingUsia = ratingUsia
+    ratingUsia = ratingUsia,
 )

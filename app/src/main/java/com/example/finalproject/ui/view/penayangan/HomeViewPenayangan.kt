@@ -2,6 +2,7 @@ package com.example.finalproject.ui.view.penayangan
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -23,6 +27,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -40,6 +45,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.R
@@ -165,11 +171,13 @@ fun PenayanganLayout(
     onDetailClick: (Penayangan) -> Unit,
     onDeleteClick: (Penayangan) -> Unit = {}
 ){
-    LazyColumn (
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2), // Menggunakan grid dengan 2 kolom
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ){
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
         items(penayangan){penayangan ->
             PenayanganCard(
                 penayangan = penayangan,
@@ -190,81 +198,91 @@ fun PenayanganCard(
     modifier: Modifier = Modifier,
     onDeleteClick: (Penayangan) -> Unit = {}
 ) {
-    Card(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .shadow(8.dp, shape = RoundedCornerShape(12.dp)),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
-        Row(
+        // Harga tiket di atas card
+        Text(
+            text = "Rp ${penayangan.hargaTiket}",
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.Bold
+            ),
+            color = Color.White, // Warna teks putih
+            modifier = Modifier
+                .align(Alignment.TopStart) // Menempatkan di bagian atas tengah
+                .padding(horizontal = 12.dp, vertical = 4.dp) // Padding untuk teks
+        )
+
+        // Card
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFE0F7FA)) // Warna latar belakang biru muda
-                .padding(16.dp)
+                .padding(top = 35.dp) // Beri jarak agar teks tidak menumpuk dengan card
+                .shadow(8.dp, shape = RoundedCornerShape(12.dp))
+                .border(2.dp, Color.White, shape = RoundedCornerShape(12.dp)),
+            shape = RoundedCornerShape(12.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Black // Warna latar belakang hitam
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
-            // Bagian kiri: Logo atau gambar
-            Box(
-                modifier = Modifier
-                    .size(80.dp)
-                    .background(Color(0xFF0097A7), shape = RoundedCornerShape(8.dp)),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.man), // Ganti dengan logo Anda
-                    contentDescription = "Logo",
-                    modifier = Modifier.size(40.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            // Bagian kanan: Informasi penayangan
             Column(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                // Tanggal Penayangan (hanya tanggal tanpa teks tambahan)
+                Text(
+                    text = penayangan.tanggalPenayangan,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+
+                // Divider ketiga
+                Divider(color = Color.Gray, thickness = 1.dp)
+
+                // ID Penayangan
                 Text(
                     text = penayangan.idPenayangan,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold
                     ),
-                    color = Color(0xFF00796B) // Warna teks hijau tua
+                    color = Color.Green // Warna teks putih
                 )
+
+                // ID Film
                 Text(
                     text = "ID Film: ${penayangan.idFilm}",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF004D40)
+                    color = Color.White // Warna teks putih
                 )
+
+                // ID Studio
                 Text(
                     text = "ID Studio: ${penayangan.idStudio}",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF004D40)
-                )
-                Text(
-                    text = "Tanggal Penayangan: ${penayangan.tanggalPenayangan}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF004D40)
-                )
-                Text(
-                    text = "Harga Tiket: ${penayangan.hargaTiket}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF004D40)
+                    color = Color.White // Warna teks putih
                 )
             }
 
             // Tombol delete
-            IconButton(onClick = { onDeleteClick(penayangan) }) {
+            IconButton(
+                onClick = { onDeleteClick(penayangan) },
+                modifier = Modifier.align(Alignment.End)
+            ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete",
-                    tint = Color.Red
+                    tint = Color.Red // Warna ikon delete tetap merah
                 )
             }
         }
     }
 }
+
+

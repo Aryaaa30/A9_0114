@@ -85,4 +85,7 @@ dependencies {
     ksp("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-ktx:2.6.0")
 
+    implementation("androidx.compose.material:material-icons-extended:1.5.1")
+    implementation ("androidx.compose.animation:animation:1.5.1") 
+
 }

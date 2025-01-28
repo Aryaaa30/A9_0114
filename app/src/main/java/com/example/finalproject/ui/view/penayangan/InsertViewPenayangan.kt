@@ -1,23 +1,37 @@
 package com.example.finalproject.ui.view.penayangan
 
+import android.app.DatePickerDialog
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalproject.ui.PenyediaViewModel
@@ -27,6 +41,7 @@ import com.example.finalproject.ui.viewmodel.penayangan.InsertUiEvent
 import com.example.finalproject.ui.viewmodel.penayangan.InsertUiState
 import com.example.finalproject.ui.viewmodel.penayangan.InsertViewModelPenayangan
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 object DestinasiInsertPenayangan: DestinasiNavigasi {
     override val route ="insert_penayangan"
@@ -96,6 +111,50 @@ fun EntryBody(
     }
 }
 
+@Composable
+fun DateInputField(
+    tanggalPenayangan: String,
+    onDateSelected: (String) -> Unit,
+    enabled: Boolean
+) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    var selectedDate by remember { mutableStateOf(tanggalPenayangan) }
+
+    OutlinedTextField(
+        value = selectedDate,
+        onValueChange = {},
+        label = { Text("Tanggal Penayangan") },
+        modifier = Modifier.fillMaxWidth(),
+        enabled = enabled,
+        singleLine = true,
+        readOnly = true, // Membuat input field hanya dapat diisi melalui DatePicker
+        trailingIcon = {
+            IconButton(onClick = {
+                DatePickerDialog(
+                    context,
+                    { _, selectedYear, selectedMonth, selectedDay ->
+                        val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                        selectedDate = formattedDate
+                        onDateSelected(formattedDate)
+                    },
+                    year,
+                    month,
+                    day
+                ).show()
+            }) {
+                Icon(Icons.Default.CalendarToday, contentDescription = "Pilih Tanggal")
+            }
+        }
+    )
+}
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormInput(
@@ -127,7 +186,6 @@ fun FormInput(
             singleLine = true
         )
 
-        // idFilm akan otomatis terisi dari data yang diambil di ViewModel
         OutlinedTextField(
             value = insertUiEvent.idStudio,
             onValueChange = { },
@@ -137,13 +195,12 @@ fun FormInput(
             singleLine = true
         )
 
-        OutlinedTextField(
-            value = insertUiEvent.tanggalPenayangan,
-            onValueChange = { onValueChange(insertUiEvent.copy(tanggalPenayangan = it)) },
-            label = { Text("Tanggal Penayangan") },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = enabled,
-            singleLine = true
+        DateInputField(
+            tanggalPenayangan = insertUiEvent.tanggalPenayangan,
+            onDateSelected = { selectedDate ->
+                onValueChange(insertUiEvent.copy(tanggalPenayangan = selectedDate))
+            },
+            enabled = enabled
         )
 
         OutlinedTextField(
@@ -168,3 +225,4 @@ fun FormInput(
         )
     }
 }
+

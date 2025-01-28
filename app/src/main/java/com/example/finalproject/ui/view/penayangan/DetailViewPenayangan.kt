@@ -27,6 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,6 +51,7 @@ object DestinasiDetailPenayangan: DestinasiNavigasi {
 fun DetailViewPenayangan(
     navigateBack: () -> Unit,
     navigateToItemUpdate: () -> Unit,
+    navigateToInsertTiket: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailViewModelPenayangan = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -86,7 +88,8 @@ fun DetailViewPenayangan(
                     if (state is DetailUiState.Success) state.penayangan.idPenayangan else ""
                 })
                 navigateBack()
-            }
+            },
+            navigateToInsertTiket = navigateToInsertTiket
         )
     }
 }
@@ -97,7 +100,8 @@ fun DetailStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     detailUiState: DetailUiState,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    navigateToInsertTiket: () -> Unit
 ) {
     when (detailUiState) {
         is DetailUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -110,7 +114,8 @@ fun DetailStatus(
                 ItemDetailMhs(
                     penayangan = detailUiState.penayangan,
                     modifier = modifier.fillMaxWidth(),
-                    onDeleteClick = onDeleteClick
+                    onDeleteClick = onDeleteClick,
+                     navigateToInsertTiket = navigateToInsertTiket
                 )
             }
         }
@@ -123,12 +128,16 @@ fun DetailStatus(
 fun ItemDetailMhs(
     modifier: Modifier = Modifier,
     penayangan: Penayangan,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    navigateToInsertTiket: () -> Unit
 ) {
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
     Card(
         modifier = modifier.padding(16.dp),
         shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Black
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Column(
@@ -164,6 +173,17 @@ fun ItemDetailMhs(
                     onDeleteCancel = { deleteConfirmationRequired = false },
                     modifier = Modifier.padding(8.dp)
                 )
+            }
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            // Tombol Beli Tiket
+            Button(
+                onClick = {
+                    navigateToInsertTiket() // Menavigasi ke DestinasiInsertTiket
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Beli Tiket")
             }
         }
     }

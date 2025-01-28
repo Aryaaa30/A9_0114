@@ -46,4 +46,5 @@ class NetworkTiketRepository(
     override suspend fun getTiketById(idTiket: String): Tiket {
         return tiketApiService.getTiketById(idTiket)
     }
+
 }

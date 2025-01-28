@@ -48,9 +48,25 @@ class InsertViewModelTiket (
             }
         }
     }
+    // Simulasikan pengambilan harga tiket dari tabel penayangan
+    private var hargaTiket: Int = 0 // Harga tiket dari tabel penayangan
 
-    fun updateInsertTiketState(insertUiEvent:InsertUiEvent) {
-        uiState = InsertUiState(insertUiEvent = insertUiEvent)
+    init {
+        loadHargaTiket()
+    }
+    private fun loadHargaTiket() {
+        // Ambil harga tiket dari tabel penayangan (ganti dengan sumber data sebenarnya)
+        hargaTiket = 400000 // Contoh harga tiket
+    }
+
+
+    fun updateInsertTiketState(event: InsertUiEvent) {
+        uiState = uiState.copy(insertUiEvent = event)
+
+        // Hitung total harga ketika jumlah tiket diubah
+        val jumlahTiket = event.jumlahTiket.toIntOrNull() ?: 0
+        val totalHarga = jumlahTiket * hargaTiket
+        uiState = uiState.copy(insertUiEvent = event.copy(totalHarga = totalHarga.toString()))
     }
 
     suspend fun insertTiket() {
